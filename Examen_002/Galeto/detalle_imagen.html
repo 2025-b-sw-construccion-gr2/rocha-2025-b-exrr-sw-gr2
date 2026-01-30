@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Imagen</title>
+    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="src/notifications.css">
+    <link rel="stylesheet" href="src/detalle_imagen.css">
+
+</head>
+
+<body>
+    <!-- Botón cerrar estilo Instagram -->
+    <button class="close-modal" id="close-btn" title="Cerrar">✕</button>
+
+    <!-- Botones de navegación -->
+    <button class="nav-btn nav-btn-prev" id="prev-btn" title="Anterior">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+        </svg>
+    </button>
+
+    <button class="nav-btn nav-btn-next" id="next-btn" title="Siguiente">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+        </svg>
+    </button>
+
+    <div class="container">
+        <div class="image-sec">
+            <img id="det-img" src="" alt="Cargando...">
+        </div>
+        <div class="info-sec">
+            <div class="post-header">
+                <div class="user-info">
+                    <div>
+                        <div class="user-avatar" id="user-avatar">U</div>
+                        <span class="username" id="det-user">...</span>
+                    </div>
+                    <div id="post-menu-container"></div>
+                </div>
+                <p class="description comment" id="det-desc">...</p>
+            </div>
+
+            <div class="likes-section">
+                <button class="btn-like" id="like-button">
+                    <span class="heart-icon not-liked" id="heart-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                    </span>
+                </button>
+                <span class="likes-count" id="likes-count">0 me gusta</span>
+            </div>
+
+            <div class="songs-section">
+                <h3>Canciones Sugeridas</h3>
+                <div id="songs-list"></div>
+            </div>
+
+            <div class="comments-section">
+                <h3>Comentarios</h3>
+                <div id="comments-list" class="comments-box"></div>
+                <form id="comment-form">
+                    <input type="text" name="text" placeholder="Agrega un comentario..." required>
+                    <button type="submit">Publicar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reproductor de audio inline (se clonará dinámicamente) -->
+    <template id="audio-player-template">
+        <div class="audio-player-inline">
+            <button class="audio-play-btn-inline" data-action="play">
+                <svg viewBox="0 0 24 24" class="play-icon">
+                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+                <svg viewBox="0 0 24 24" class="pause-icon" style="display: none;">
+                    <path fill="currentColor" d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+            </button>
+            <div class="audio-progress-inline">
+                <div class="audio-time-inline" data-time="current">0:00</div>
+                <div class="audio-progress-container-inline">
+                    <div class="audio-progress-bar-inline"></div>
+                </div>
+                <div class="audio-time-inline" data-time="total">0:00</div>
+            </div>
+            <button class="audio-close-btn-inline" data-action="close">✕</button>
+        </div>
+    </template>
+
+    <!-- iframe oculto para YouTube API -->
+    <div style="display: none;">
+        <div id="youtube-player"></div>
+    </div>
+
+    <!-- Modal para Editar Publicación -->
+    <div id="edit-post-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" id="close-edit-modal">&times;</span>
+            <h2>Editar Publicación</h2>
+            <form id="edit-post-form">
+                <label>Descripción</label>
+                <textarea id="edit-description" name="description" placeholder="Descripción de la imagen" rows="3" required></textarea>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-save">Guardar Cambios</button>
+                    <button type="button" class="btn-cancel" id="cancel-edit-post">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación Personalizado -->
+    <div id="custom-modal-overlay" class="custom-modal-overlay">
+        <div class="custom-modal">
+            <div id="custom-modal-icon" class="custom-modal-icon"></div>
+            <h3 id="custom-modal-title"></h3>
+            <p id="custom-modal-message"></p>
+            <div id="custom-modal-buttons" class="custom-modal-buttons"></div>
+        </div>
+    </div>
+
+    <script src="src/app.js"></script>
+    <script src="src/detalle_imagen.js"></script>
+</body>
+
+</html>

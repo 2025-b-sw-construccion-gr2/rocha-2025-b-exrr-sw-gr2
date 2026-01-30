@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Categoría</title>
+    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="src/notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="src/category.css">
+    <style>
+        #upload-btn {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div><a href="index.html" class="btn-nav">&larr; Volver</a></div>
+            <div>
+                <h2 id="category-title" class="logo"></h2>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <button id="upload-btn" class="btn-nav btn-upload">Subir Contenido</button>
+                <a href="#" id="logout-category" class="btn-nav" style="display: none;">Cerrar Sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <div id="gallery">
+    </div>
+
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close-btn">&times;</span>
+            <h2>Subir Contenido</h2>
+            <form id="upload-form">
+                <label>Seleccionar Imagen</label>
+                <input type="file" id="file-input" name="image" accept=".jpg,.jpeg,.png" required>
+                <p style="font-size:0.85em; color:#999; margin-top:5px;">Solo se permiten archivos .jpg, .jpeg y .png
+                </p>
+
+                <textarea name="description" placeholder="Escribe una descripción..." rows="3" required></textarea>
+
+                <h4 style="margin-top: 10px; margin-bottom: 5px; color: #ccc;">Canciones recomendadas</h4>
+                <div style="display:flex; gap:10px;">
+                    <input type="text" class="song-title" placeholder="Título canción 1" required>
+                    <input type="url" class="song-link" placeholder="Link" inputmode="url" pattern="https?://.+"
+                        required>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <input type="text" class="song-title" placeholder="Título canción 2" required>
+                    <input type="url" class="song-link" placeholder="Link" inputmode="url" pattern="https?://.+"
+                        required>
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <input type="text" class="song-title" placeholder="Título canción 3" required>
+                    <input type="url" class="song-link" placeholder="Link" inputmode="url" pattern="https?://.+"
+                        required>
+                </div>
+                <p id="songs-error-msg"
+                    style="color:#e74c3c; font-size:14px; display:none; margin-top:10px;  opacity:0; transition: opacity 0.6s ease;">
+                </p>
+
+                <button type="submit">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="success-modal" class="modal">
+        <div class="modal-content success-content">
+            <div class="success-icon"><i class="fa-solid fa-check-circle"></i></div>
+            <h2 style="color: #333; margin-top:0;">¡Subido con éxito!</h2>
+            <p style="color: #666;">Tu imagen ya está disponible en la galería.</p>
+            <button id="btn-success-ok" class="btn-accept">Aceptar</button>
+        </div>
+    </div>
+
+    <script src="src/app.js"></script>
+    <script src="src/category.js"></script>
+</body>
+
+</html>
